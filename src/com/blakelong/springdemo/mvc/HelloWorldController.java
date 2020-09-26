@@ -5,8 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@RequestMapping("/hello")
 public class HelloWorldController {
 	
 	@RequestMapping("/showForm")
@@ -32,6 +34,21 @@ public class HelloWorldController {
 		
 		// create the message
 		String result = "Yo! " + name;
+		
+		// add the message to the model
+		model.addAttribute("message", result);
+		
+		return "helloworld";
+	}
+	
+	@RequestMapping("/processFormVersionThree")
+	public String greetingShoutTwo(@RequestParam("studentName") String name, Model model) {
+
+		// convert data to uppercase
+		name = name.toUpperCase();
+		
+		// create the message
+		String result = "Hello there from requestParam binding " + name;
 		
 		// add the message to the model
 		model.addAttribute("message", result);
