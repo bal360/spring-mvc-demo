@@ -11,13 +11,6 @@ public class HomeController {
 		return "main-menu";
 	}
 	
-	@RequestMapping("/say-hello")
-	public String sayHello() {
-		return "say-hello";
-	}
 	
-	@RequestMapping("/once-again")
-	public String onceMore() {
-		return "once-again";
-	}
+	
 }
