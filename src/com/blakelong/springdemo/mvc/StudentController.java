@@ -1,11 +1,11 @@
 package com.blakelong.springdemo.mvc;
 
-//import java.util.Map;
-//import org.springframework.beans.factory.annotation.Value;
+import java.util.Map;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping("/student")
@@ -30,10 +30,11 @@ public class StudentController {
 	}
 	
 	@RequestMapping("/processForm")
-	public String processForm(@ModelAttribute("student") Student student) {
+	public String processForm(@ModelAttribute("student") Student student, 
+			@RequestParam Map<String, String> params) {
 		
-		// log the input data
-		System.out.println("Full Name: " + student.getFirstName() + " " + student.getLastName());
+		// log the input data		
+		System.out.println(params);
 		
 		return "student-confirmation";
 	}
