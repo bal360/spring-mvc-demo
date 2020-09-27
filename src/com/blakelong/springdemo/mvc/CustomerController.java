@@ -15,6 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/customer")
 public class CustomerController {
 	
+	// called for every web request coming into controller
+	// pre-process every String form data
+	// remove leading and trailing whitespace 
+	// if input is all whitespace the value will be trimmed to null
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+		
+		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+		
+		dataBinder.registerCustomEditor(StringTrimmerEditor.class, stringTrimmerEditor);
+	}
+	
 	@RequestMapping("/showForm")
 	public String showForm(Model model) {
 		
@@ -37,11 +49,4 @@ public class CustomerController {
 		}
 	}
 	
-	@InitBinder
-	public void initBinder(WebDataBinder dataBinder) {
-		
-		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
-		
-		dataBinder.registerCustomEditor(StringTrimmerEditor.class, stringTrimmerEditor);
-	}
 }
