@@ -1,7 +1,6 @@
 package com.blakelong.springdemo.mvc;
 
 import javax.validation.Valid;
-
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,7 +23,7 @@ public class CustomerController {
 		
 		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
 		
-		dataBinder.registerCustomEditor(StringTrimmerEditor.class, stringTrimmerEditor);
+		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}
 	
 	@RequestMapping("/showForm")
@@ -40,8 +39,6 @@ public class CustomerController {
 			@Valid @ModelAttribute("customer") Customer customer,
 			BindingResult bindingResult) {
 		
-		
-		System.out.println("Last name : |" + customer.getLastName() + "|");
 		if (bindingResult.hasErrors()) {
 			return "customer-form";
 		} else {
