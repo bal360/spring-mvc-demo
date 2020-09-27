@@ -29,6 +29,12 @@
 	
 	<!-- loading optional properties file to avoid hard-coding country options in java code  -->
 	<util:properties id="countries" location="classpath:../countries.properties" />
+	
+	<!-- Load custom message resources -->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames" value="resources/messages" />
+	</bean>
 
 </beans>
 
